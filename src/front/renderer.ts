@@ -6,7 +6,7 @@
 // needed in the renderer process.
 
 import { afficheUsers, ajouteUser } from './utils/utils.js'
-import { Calendar } from '@fullcalendar/core';
+//import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 //import timeGridPlugin from '@fullcalendar/timegrid';
 //import listPlugin from '@fullcalendar/list';
@@ -15,7 +15,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 
 (async () => {
     try {
-        console.log(Calendar)
+        console.log("gyuvb")
        /* let calendarEl = document.getElementById('calendar');
 
         let calendar = new Calendar(calendarEl, {
