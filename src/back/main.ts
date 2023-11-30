@@ -3,20 +3,33 @@ import * as path from "path";
 import { getAll, getById, add, supp, mod } from './bdd/user.js'
 
 
-//Zone de handle
-ipcMain.handle('get-users', async (event) => await getAll())
-ipcMain.handle('get-user-by-id', async (event, params) => {
-  return await getById(params)
+//CRUD event
+ipcMain.handle('get-event-by-id', async (event, id) => "get-event-by-id " + id)
+
+
+ipcMain.handle('get-events-by-date', async (event, month,year) => {
+  return 'get-events-by-date ' + month +' '+ year;
 })
-ipcMain.handle('add-user', async (event, params) => {
-  return await add(params.nom, params.prenom)
+
+ipcMain.handle('create-event', async (event, params) => {
+  return "create-event " + params;
 })
-ipcMain.handle('supp-user', async (event, params) => {
-  return await supp(params)
+
+ipcMain.handle('update-event', async (event, id, params) => {
+  return "update-event "+ ' ' + id+ ' ' + params;
 })
-ipcMain.handle('mod-user', async (event, params) => {
-  return await mod(params.id, params.nom, params.prenom)
+
+ipcMain.handle('delete-event', async (event, id) => {
+  return "delete-event " + id;
 })
+
+//
+
+
+
+
+
+
 ipcMain.handle('show-context-menu', async (event) => {
 
   const win: any = BrowserWindow.fromWebContents(event.sender)

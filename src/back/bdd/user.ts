@@ -2,7 +2,7 @@ import conn from './connect.js'
 
 export function getAll() {
     return new Promise((res, reject) => {
-        conn.query('SELECT * from utilisateurs', (err: any, result: any) => {
+        conn.query('SELECT * from utilifsateurs', (err: any, result: any) => {
             if (err) reject(err)
             else res(result)
         })
