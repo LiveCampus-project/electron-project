@@ -1,18 +1,21 @@
-import { IUser } from "../interfaces/user";
+
 
 export { }
 declare global {
     interface Window {
         "electron": {
-            getUsers: () => Promise<any>;
-            getUserById: (id: number) => Promise<any>;
-            addUser: (user: IUser) => Promise<any>;
-            suppUser: (id: number) => Promise<any>;
-            modUser: (user: IUser) => Promise<any>;
+            getEventsByDate: (month: string, year: string) => Promise<any>;
+            getEventById: (id: number) => Promise<any>;
+            createEvent: (params: any) => Promise<any>;
+            updateEvent: (id: number, params: any) => Promise<any>;
+            deleteEvent: (id: number) => Promise<any>;
             contextMenu: () => Promise<any>;
         }
     }
-    function afficheUsers(result: any, tableUsers: HTMLElement): void
-    function ajouteUser(value: string, value1: string): any
+    function getEventsByDate(month: string, year: string): Promise<any>;
+    function getEventById(id: number): Promise<any>;
+    function createEvent(params: any): Promise<any>;
+    function updateEvent(id: number, params: any): Promise<any>;
+    function deleteEvent(id: number): Promise<any>;
 }
 
