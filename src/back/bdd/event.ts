@@ -9,7 +9,7 @@ export function getAllEvent() {
 
     })
 }
-export function getById(id: number) {
+export function getEventById(id: number) {
     return new Promise((res, reject) => {
         conn.query('SELECT * from event WHERE id=?', [id], (err: any, result: any) => {
             if (err) reject(err)
@@ -18,7 +18,7 @@ export function getById(id: number) {
 
     })
 }
-export function add(date_deb: Date, date_fin: Date, titre:string, categorie:string, statut:string, description:string, transparence:string) {
+export function createEvent(date_deb: Date, date_fin: Date, titre:string, categorie:string, statut:string, description:string, transparence:string) {
     return new Promise((res, reject) => {
         conn.query('INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?)',
             [date_deb, date_fin, titre, categorie, statut, description, transparence], (err: any, result: any) => {
@@ -28,7 +28,7 @@ export function add(date_deb: Date, date_fin: Date, titre:string, categorie:stri
 
     })
 }
-export function supp(id: number) {
+export function deleteEvent(id: number) {
     return new Promise((res, reject) => {
         conn.query('DELETE FROM event WHERE id=?',
             [id], (err: any, result: any) => {
