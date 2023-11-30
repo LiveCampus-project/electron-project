@@ -1,7 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/front/renderer.ts',
+    entry: {
+        renderer: './src/front/renderer.ts',
+},
     module: {
         rules: [
             {
@@ -15,7 +17,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'renderer.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {

@@ -7,8 +7,7 @@
     ],
     "noImplicitAny": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "outDir": "dist",
+    "outDir": "dist/front",
     "baseUrl": ".",
     "paths": {
       "*": [
