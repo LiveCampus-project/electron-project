@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         renderer: './src/front/renderer.ts',
+        detailPageRenderer: './src/front/detailPageRenderer.ts',
 },
     module: {
         rules: [

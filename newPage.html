@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>add event</h1>
+        <form>
+            <label for="titre">title</label>
+            <input type="text" id="titre" ><br>
+
+            <label for="date_deb">date de début</label>
+            <input id="date_deb" type="date" ><br>
+
+            <label for="date_fin">date de fin</label>
+            <input id="date_fin" type="date" ></textarea><br>
+ 
+            <label for="description">description</label>
+            <input id="description" type="text"><br>
+
+            <label for="categorie">categorie</label>
+            <input id="categorie" type="categorie"><br>
+
+
+            <input type="submit" id="submit" value="Submit">
+        </form>
+    </div>
+    <script type="module" src="./dist/detailPageRenderer.js"></script>
+</body>
+</html>

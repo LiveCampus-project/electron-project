@@ -23,6 +23,10 @@ ipcMain.handle('delete-event', async (event, id) => {
   return "delete-event " + id;
 })
 
+ipcMain.handle('open-detail', async (event, id) => { 
+   createWindow2();
+ })
+
 //
 
 
@@ -85,7 +89,10 @@ function createWindow2() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "../../detail.html"));
+  mainWindow.loadFile(path.join(__dirname, "../../newPage.html"));
+  mainWindow.setMenu(menu)
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools();
 
 }
 
@@ -95,6 +102,7 @@ function createWindow2() {
 app.whenReady().then(() => {
   createWindow();
 
+  createWindow2();
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
