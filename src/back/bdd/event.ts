@@ -1,4 +1,6 @@
 import conn from './connect.js'
+import { IEvent } from '../../interfaces/event.js'
+
 
 export function getAllEvent() {
     return new Promise((res, reject) => {
@@ -24,10 +26,9 @@ export function getEventByDate(month:number, year:number) {
             if (err) reject(err)
             else res(result[0])
         })
-
     })
 }
-export function createEvent(params:Event) {
+export function createEvent(params:IEvent) {
     return new Promise((res, reject) => {
         conn.query('INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
             [params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
@@ -47,6 +48,18 @@ export function deleteEvent(id: number) {
 
     })
 }
+
+//Modifier
+export function modifierEvent(id:number, params:IEvent) {
+    return new Promise((res, reject) => {
+        conn.query('REPLACE INTO event (id, date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
+            [id, params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
+                if (err) reject(err)
+                else res("Evènement ajouté !")
+            })
+    })
+}
+
 export function modifierDebut(id: number, date_deb: Date) {
     return new Promise((res, reject) => {
         conn.query('UPDATE event set date_deb=? WHERE id=?',
