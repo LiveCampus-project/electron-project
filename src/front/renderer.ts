@@ -13,6 +13,7 @@ import {
   updateEvent,
 } from "./utils/utils";
 import { Calendar } from "@fullcalendar/core";
+import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
@@ -21,9 +22,10 @@ import listPlugin from "@fullcalendar/list";
   try {
     // console.log(Calendar)
     let calendarEl = document.getElementById("calendar");
+    let addEventButton = document.getElementById("add-event");
 
     let calendar = new Calendar(calendarEl, {
-      plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+      plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
       initialView: "dayGridMonth",
       headerToolbar: {
         left: "prev,next today",
@@ -31,6 +33,18 @@ import listPlugin from "@fullcalendar/list";
         right: "dayGridMonth,timeGridWeek,listWeek",
       },
     });
+
+    addEventButton.addEventListener("click", () => {
+      window.electron.openDetail(1);
+      localStorage.setItem("event", JSON.stringify(1));
+    });
+
+    calendar.on("dateClick", function (info) {
+      if (localStorage.getItem("event") != null) {
+        console.log("clicked on " + info.dateStr);
+      } else [console.log("nope")];
+    });
+
     calendar.render();
 
     console.log(getEventsByDate("01", "2021"));
@@ -44,7 +58,9 @@ import listPlugin from "@fullcalendar/list";
         location: "test",
       })
     );
+
     console.log(deleteEvent(1));
+
     console.log(
       updateEvent(1, {
         title: "test",

@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld(
     createEvent: (params: any) => ipcRenderer.invoke('create-event', params),
     updateEvent: (id: number, params: any) => ipcRenderer.invoke('update-event', id, params),
     deleteEvent: (id: number) => ipcRenderer.invoke('delete-event', id),
+    openDetail: (id: number) => ipcRenderer.invoke('open-detail', id),
     
     contextMenu: () => ipcRenderer.invoke('show-context-menu')
   }

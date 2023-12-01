@@ -10,6 +10,7 @@ declare global {
             updateEvent: (id: number, params: any) => Promise<any>;
             deleteEvent: (id: number) => Promise<any>;
             contextMenu: () => Promise<any>;
+            openDetail: (id: number) => Promise<any>;
         }
     }
     function getEventsByDate(month: string, year: string): Promise<any>;
