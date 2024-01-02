@@ -4,8 +4,8 @@ export interface IEvent {
     date_fin: string,
     titre: string,
     location: string,
+    categorie: string,
     status: string,
     description: string,
     transparence: string,
 }
-
