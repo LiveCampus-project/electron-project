@@ -9,6 +9,7 @@ import {
   getEventById,
   createEvent, 
   deleteEvent,
+  getEventsByDate,
   updateEvent
 } from "./utils/utils";
 import { Calendar } from "@fullcalendar/core";
@@ -46,29 +47,46 @@ import listPlugin from "@fullcalendar/list";
 
     calendar.render();
 
-    console.log(getEventsByDate("01", "2021"));
-    console.log(getEventById(1));
+
+
+    
+    let e = {
+      date_deb: "2024-01-01",
+      date_fin:"2024-01-21",
+      titre: "test",
+      categorie: "party",
+      status: "a faire",
+      description: "ceci est un test",
+      transparence: "rien"
+    }
+    console.log(e);
     console.log(
-      createEvent({
-        title: "test",
-        date: "2021-01-01",
-        time: "10:00",
-        description: "test",
-        location: "test",
+      createEvent(e).then((res) => {
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
       })
     );
 
-    console.log(deleteEvent(1));
 
-    console.log(
-      updateEvent(1, {
-        title: "test",
-        date: "2021-01-01",
-        time: "10:00",
-        description: "test",
-        location: "test",
-      })
-    );
+
+    //console.log(getEventsByDate("01", "2024"));
+    // console.log(getEventById(1));
+    
+    // let x = {
+    //   date_deb: "2024-01-01",
+    //   date_fin:"2024-01-22",
+    //   titre: "test",
+    //   categorie: "party",
+    //   status: "a refaire",
+    //   description: "ceci est un test a nouveau",
+    //   transparence: "rien"
+    // }
+    // console.log(x);
+    // //console.log(deleteEvent(1));
+    // console.log(
+    //   updateEvent(1, x)
+    // );
   } catch (err) {
     console.error(err);
   }
