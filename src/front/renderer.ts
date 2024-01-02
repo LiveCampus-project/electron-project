@@ -5,16 +5,11 @@
 // Use preload.js to selectively enable features
 // needed in the renderer process.
 import {
-  getAllEvents, 
-  getEventById, 
+  getAllEvents,
+  getEventById,
   createEvent, 
   deleteEvent,
-  updateEvent, 
-  modifierDebut, 
-  modifierFin, 
-  modifierTitre, 
-  modifierStatut, 
-  modifierDebFin
+  updateEvent
 } from "./utils/utils";
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";

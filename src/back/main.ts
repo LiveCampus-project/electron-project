@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
-import { getAllEvent, getEventById, createEvent, deleteEvent, modifierDebut, modifierFin, modifierTitre, modifierStatut, modifierDebFin } from './bdd/event.js'
+import { getAllEvents, getEventById, createEvent, deleteEvent} from './bdd/event.js'
 
 
 //CRUD event
@@ -28,11 +28,6 @@ ipcMain.handle('open-detail', async (event, id) => {
  })
 
 //
-
-
-
-
-
 
 ipcMain.handle('show-context-menu', async (event) => {
 
