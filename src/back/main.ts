@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
-import { getAll, getById, add, supp, mod } from './bdd/user.js'
+import { getAllEvent, getById, add, supp, mod } from './bdd/event.js'
 
 
 //CRUD event
