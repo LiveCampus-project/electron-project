@@ -2,13 +2,12 @@ import conn from './connect.js'
 import { IEvent } from '../../interfaces/event.js'
 
 
-export function getAllEvent() {
+export function getAllEvents() {
     return new Promise((res, reject) => {
         conn.query('SELECT * FROM event', (err: any, result: any) => {
             if (err) reject(err)
             else res(result)
         })
-
     })
 }
 export function getEventById(id: number) {
@@ -50,7 +49,7 @@ export function deleteEvent(id: number) {
 }
 
 //Modifier
-export function modifierEvent(id:number, params:IEvent) {
+export function updateEvent(id:number, params:IEvent) {
     return new Promise((res, reject) => {
         conn.query('REPLACE INTO event (id, date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
             [id, params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
@@ -99,7 +98,6 @@ export function modifierStatut(id: number, statut: string) {
                 if (err) reject(err)
                 else res("Evènement modifié !")
             })
-
     })
 }
 

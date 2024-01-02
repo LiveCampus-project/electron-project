@@ -4,13 +4,17 @@
 // nodeIntegration is set to true in webPreferences.
 // Use preload.js to selectively enable features
 // needed in the renderer process.
-
 import {
-  getEventsByDate,
-  getEventById,
-  createEvent,
+  getAllEvents, 
+  getEventById, 
+  createEvent, 
   deleteEvent,
-  updateEvent,
+  updateEvent, 
+  modifierDebut, 
+  modifierFin, 
+  modifierTitre, 
+  modifierStatut, 
+  modifierDebFin
 } from "./utils/utils";
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
