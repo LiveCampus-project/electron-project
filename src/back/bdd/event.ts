@@ -29,20 +29,12 @@ export function getEventByDate(month:number, year:number) {
 }
 
 export function createEvent(params:IEvent) {
-    
     return new Promise((res, reject) => {
-        // conn.query('INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
-        //     [params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
-        //         if (err) reject(err)
-        //         else res("Evènement ajouté !")
-        //     })
-        conn.query(
-            "INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES ('2024-01-01','2024-01-02','titre','une','en cours','desc','trans')",
-            (err: any, result: any) => {
+        conn.query('INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
+            [params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
                 if (err) reject(err)
                 else res("Evènement ajouté !")
-            }
-        );
+            })
     })
 }
 export function deleteEvent(id: number) {

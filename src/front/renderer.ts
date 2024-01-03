@@ -48,15 +48,13 @@ import listPlugin from "@fullcalendar/list";
     calendar.render();
 
 
-
-    
     let e = {
-      date_deb: "2024-01-01",
+      date_debut: "2024-01-01",
       date_fin:"2024-01-21",
       titre: "test",
       categorie: "party",
       status: "a faire",
-      description: "ceci est un test",
+      description: "c'est un test",
       transparence: "rien"
     }
     console.log(e);
@@ -70,23 +68,23 @@ import listPlugin from "@fullcalendar/list";
 
 
 
-    //console.log(getEventsByDate("01", "2024"));
-    // console.log(getEventById(1));
+    console.log(getEventsByDate("01", "2024"));
+    console.log(getEventById(1));
     
-    // let x = {
-    //   date_deb: "2024-01-01",
-    //   date_fin:"2024-01-22",
-    //   titre: "test",
-    //   categorie: "party",
-    //   status: "a refaire",
-    //   description: "ceci est un test a nouveau",
-    //   transparence: "rien"
-    // }
-    // console.log(x);
-    // //console.log(deleteEvent(1));
-    // console.log(
-    //   updateEvent(1, x)
-    // );
+    let x = {
+      date_deb: "2024-01-01",
+      date_fin:"2024-01-22",
+      titre: "test",
+      categorie: "party",
+      status: "a refaire",
+      description: "ceci est un test a nouveau",
+      transparence: "rien"
+    }
+    console.log(x);
+    //console.log(deleteEvent(1));
+    console.log(
+      updateEvent(1, x)
+    );
   } catch (err) {
     console.error(err);
   }

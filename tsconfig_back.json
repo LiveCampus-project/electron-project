@@ -8,7 +8,7 @@
     "module": "CommonJS",
     "noImplicitAny": true,
     "sourceMap": true,
-    "outDir": "dist/back",
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "*": [
