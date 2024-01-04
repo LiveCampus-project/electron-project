@@ -50,23 +50,24 @@
         <h1>add event</h1>
         <form>
             <label for="titre">title</label>
-            <input type="text" id="titre" ><br>
+            <input type="text" id="title" /><br>
 
             <label for="date_deb">date de début</label>
-            <input id="date_deb" type="date" ><br>
+            <input id="date_begin" type="date" /><br>
 
             <label for="date_fin">date de fin</label>
-            <input id="date_fin" type="date" ></textarea><br>
+            <input id="date_end" type="date" value="vfgv"/></textarea><br>
  
             <label for="description">description</label>
-            <input id="description" type="text"><br>
+            <input id="description" type="text" /><br>
 
             <label for="categorie">categorie</label>
-            <input id="categorie" type="categorie"><br>
-
+            <input id="categorie" type="categorie" /><br>
 
             <input type="submit" id="submit" value="Submit">
         </form>
+        <p id="error_msg"></p>
+        <p id="success_msg"></p>
     </div>
     <script type="module" src="./dist/detailPageRenderer.js"></script>
 </body>
