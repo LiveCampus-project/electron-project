@@ -66,9 +66,9 @@ import listPlugin from "@fullcalendar/list";
     //   })
     // );
 
-    //test recup event
-    console.log(getEventByDate("02", "2024"));
-    console.log(getEventById(1));
+    //test recup event  --------> OK !
+    // console.log(getEventByDate("02", "2024"));
+    // console.log(getEventById(1));
 
     //test update event ---------> OK !    
     // let x = {
@@ -86,7 +86,8 @@ import listPlugin from "@fullcalendar/list";
     //   console.log(err);
     // });
     // console.log(x);
-    //console.log(deleteEvent(1));
+    
+    console.log(deleteEvent(1));
     
   } catch (err) {
     console.error(err);
