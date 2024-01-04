@@ -9,7 +9,7 @@ import {
   getEventById,
   createEvent, 
   deleteEvent,
-  getEventsByDate,
+  getEventByDate,
   updateEvent
 } from "./utils/utils";
 import { Calendar } from "@fullcalendar/core";
@@ -47,44 +47,47 @@ import listPlugin from "@fullcalendar/list";
 
     calendar.render();
 
+//test creeer event  ------> OK !
+    // let e = {
+    //   date_debut: "2024-02-01",
+    //   date_fin:"2024-04-21",
+    //   titre: "test",
+    //   categorie: "party",
+    //   status: "a faire",
+    //   description: "c'est un test",
+    //   transparence: "rien"
+    // }
+    // console.log(e);
+    // console.log(
+    //   createEvent(e).then((res) => {
+    //     console.log(res);
+    //   }).catch((err)=>{
+    //     console.log(err);
+    //   })
+    // );
 
-    let e = {
-      date_debut: "2024-01-01",
-      date_fin:"2024-01-21",
-      titre: "test",
-      categorie: "party",
-      status: "a faire",
-      description: "c'est un test",
-      transparence: "rien"
-    }
-    console.log(e);
-    console.log(
-      createEvent(e).then((res) => {
-        console.log(res);
-      }).catch((err)=>{
-        console.log(err);
-      })
-    );
-
-
-
-    console.log(getEventsByDate("01", "2024"));
+    //test recup event
+    console.log(getEventByDate("02", "2024"));
     console.log(getEventById(1));
-    
-    let x = {
-      date_deb: "2024-01-01",
-      date_fin:"2024-01-22",
-      titre: "test",
-      categorie: "party",
-      status: "a refaire",
-      description: "ceci est un test a nouveau",
-      transparence: "rien"
-    }
-    console.log(x);
+
+    //test update event ---------> OK !    
+    // let x = {
+    //   date_debut: "2024-01-01",
+    //   date_fin:"2024-01-22",
+    //   titre: "test",
+    //   categorie: "party",
+    //   status: "a refaire",
+    //   description: "ceci est un test a nouveau",
+    //   transparence: "rien"
+    // }
+    // updateEvent(1, x).then((res) => {
+    //   console.log(res);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // });
+    // console.log(x);
     //console.log(deleteEvent(1));
-    console.log(
-      updateEvent(1, x)
-    );
+    
   } catch (err) {
     console.error(err);
   }

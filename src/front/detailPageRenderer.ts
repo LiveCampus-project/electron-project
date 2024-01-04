@@ -1,5 +1,5 @@
 import {
-    getEventsByDate,
+    getEventByDate,
     getEventById,
     createEvent,
     deleteEvent,

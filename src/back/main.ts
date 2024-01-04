@@ -1,26 +1,26 @@
 import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
-import { getAllEvents, getEventById, createEvent, deleteEvent} from './bdd/event.js'
+import { getAllEvents, getEventByDate, getEventById, updateEvent,createEvent, deleteEvent} from './bdd/event.js'
 
 
 //CRUD event
 ipcMain.handle('get-event-by-id', async (event, id) =>{
-  getEventById(id).then(data=>console.log(data)).catch(err=>console.log(err));
-  "get-event-by-id " + id
+  let e = getEventById(id).then(data=>console.log(data)).catch(err => console.log(err));
+  return "get-event-by-id " + e;
 }) 
   
 ipcMain.handle('get-all-events', async (event) =>{
-  getAllEvents().then(data=>console.log(data)).catch(err=>console.log(err));
-  "get-all-events"
+  let eventList = getAllEvents().then(data=>console.log(data)).catch(err => console.log(err));
+  return "get-all-events" + eventList;
 })
 
-ipcMain.handle('get-events-by-date', async (event, month,year) => {
-  getEventsByDate(month, year).then(data=>console.log(data)).catch(err=>console.log(err));
-  return 'get-events-by-date ' + month +' '+ year;
+ipcMain.handle('get-event-by-date', async (event, month,year) => {
+  let e = getEventByDate(month, year).then(data=>console.log(data)).catch(err => console.log(err));
+  return 'get-event-by-date ' + month +' '+ year;
 })
 
 ipcMain.handle('create-event', async (event, params) => {
-  createEvent(params).then(data=>console.log(data)).catch(err=>console.log(err));
+  createEvent(params).then(data=>console.log(data)).catch(err => console.log(err));
   return "create-event " + params;
 })
 

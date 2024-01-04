@@ -2,8 +2,8 @@
 export async function getAllEvents(){
     return await window.electron.getAllEvents();
 }
-export async function getEventsByDate(month: string, year: string) {
-    return await window.electron.getEventsByDate(month, year);
+export async function getEventByDate(month: string, year: string) {
+    return await window.electron.getEventByDate(month, year);
 }
 
 export async function getEventById(id: number) {
