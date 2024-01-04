@@ -1,25 +1,36 @@
 import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
-import { getAll, getById, add, supp, mod } from './bdd/user.js'
+import { getAllEvents, getEventById, createEvent, deleteEvent} from './bdd/event.js'
 
 
 //CRUD event
-ipcMain.handle('get-event-by-id', async (event, id) => "get-event-by-id " + id)
-
+ipcMain.handle('get-event-by-id', async (event, id) =>{
+  getEventById(id).then(data=>console.log(data)).catch(err=>console.log(err));
+  "get-event-by-id " + id
+}) 
+  
+ipcMain.handle('get-all-events', async (event) =>{
+  getAllEvents().then(data=>console.log(data)).catch(err=>console.log(err));
+  "get-all-events"
+})
 
 ipcMain.handle('get-events-by-date', async (event, month,year) => {
+  getEventsByDate(month, year).then(data=>console.log(data)).catch(err=>console.log(err));
   return 'get-events-by-date ' + month +' '+ year;
 })
 
 ipcMain.handle('create-event', async (event, params) => {
+  createEvent(params).then(data=>console.log(data)).catch(err=>console.log(err));
   return "create-event " + params;
 })
 
 ipcMain.handle('update-event', async (event, id, params) => {
+  updateEvent(id, params).then(data=>console.log(data)).catch(err=>console.log(err));
   return "update-event "+ ' ' + id+ ' ' + params;
 })
 
 ipcMain.handle('delete-event', async (event, id) => {
+  deleteEvent(id).then(data=>console.log(data)).catch(err=>console.log(err));
   return "delete-event " + id;
 })
 
@@ -28,11 +39,6 @@ ipcMain.handle('open-detail', async (event, id) => {
  })
 
 //
-
-
-
-
-
 
 ipcMain.handle('show-context-menu', async (event) => {
 

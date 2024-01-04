@@ -1,3 +1,13 @@
-import { createConnection } from 'mysql2'
+import { createConnection, Connection } from 'mysql2'
+let conn:Connection|null = null;
 
-export default createConnection({ host: 'localhost', user: 'root', database: 'test' })
+try{
+    conn = createConnection({host: '127.0.0.1', user: 'root', password:"", database: 'event_manager'});
+    conn.connect(err=>console.log(err));
+}
+catch (err){
+    console.log(err);
+}
+
+export default conn;
+
