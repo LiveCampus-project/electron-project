@@ -79,9 +79,9 @@ import {
       const areValuesFilled = verifyValues();
       if (areValuesFilled) {
         const obj = {
-          title: title,
-          date_begin: dateBegin,
-          date_end: dateEnd,
+          titre: title,
+          date_debut: dateBegin,
+          date_fin: dateEnd,
           description: description,
           categorie: categorie,
         };

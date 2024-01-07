@@ -4,6 +4,7 @@ module.exports = {
     entry: {
         renderer: './src/front/renderer.ts',
         detailPageRenderer: './src/front/detailPageRenderer.ts',
+        updatePageRenderer: './src/front/updateRenderer.ts'
 },
     module: {
         rules: [

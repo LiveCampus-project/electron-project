@@ -1,50 +1,66 @@
 import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
-import { getAllEvents, getEventById, createEvent, deleteEvent} from './bdd/event.js'
-
+import {
+  getAllEvents,
+  getEventById,
+  createEvent,
+  deleteEvent,
+  getEventByDate,
+  updateEvent,
+} from "./bdd/event.js";
 
 //CRUD event
-ipcMain.handle('get-event-by-id', async (event, id) =>{
-  getEventById(id).then(data=>console.log(data)).catch(err=>console.log(err));
-  "get-event-by-id " + id
-}) 
-  
-ipcMain.handle('get-all-events', async (event) =>{
-  getAllEvents().then(data=>console.log(data)).catch(err=>console.log(err));
-  "get-all-events"
-})
+ipcMain.handle("get-event-by-id", async (event, id) => {
+  getEventById(id)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  "get-event-by-id " + id;
+});
 
-ipcMain.handle('get-events-by-date', async (event, month,year) => {
-  getEventsByDate(month, year).then(data=>console.log(data)).catch(err=>console.log(err));
-  return 'get-events-by-date ' + month +' '+ year;
-})
+ipcMain.handle("get-all-events", async (event) => {
+  getAllEvents()
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  ("get-all-events");
+});
 
-ipcMain.handle('create-event', async (event, params) => {
-  createEvent(params).then(data=>console.log(data)).catch(err=>console.log(err));
-  return "create-event " + params;
-})
+ipcMain.handle("get-events-by-date", async (event, month, year) => {  
+  return getEventByDate(month, year);
+});
 
-ipcMain.handle('update-event', async (event, id, params) => {
-  updateEvent(id, params).then(data=>console.log(data)).catch(err=>console.log(err));
-  return "update-event "+ ' ' + id+ ' ' + params;
-})
+ipcMain.handle("create-event", async (event, params) => {
+  console.log("testtt")
+  return createEvent(params);
+});
 
-ipcMain.handle('delete-event', async (event, id) => {
-  deleteEvent(id).then(data=>console.log(data)).catch(err=>console.log(err));
+ipcMain.handle("update-event", async (event, id, params) => {
+  updateEvent(id, params)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  return "update-event " + " " + id + " " + params;
+});
+
+ipcMain.handle("delete-event", async (event, id) => {
+  deleteEvent(id)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
   return "delete-event " + id;
-})
+});
 
-ipcMain.handle('open-detail', async (event, id) => { 
-   createWindow2();
- })
+ipcMain.handle("open-detail", async (event, id) => {
+  createWindow2();
+});
+
+ipcMain.handle("open-update", async (event, info) => {
+  createWindowUpdate(info)
+})
 
 //
 
-ipcMain.handle('show-context-menu', async (event) => {
-
-  const win: any = BrowserWindow.fromWebContents(event.sender)
-  menu.popup(win)
-})
+ipcMain.handle("show-context-menu", async (event) => {
+  const win: any = BrowserWindow.fromWebContents(event.sender);
+  menu.popup(win);
+});
 
 //Zone déclaration menus
 const templateMenu: any = [
@@ -55,16 +71,20 @@ const templateMenu: any = [
         label: "test",
         click: () => {
           //ouvrir une deuxième fenètre
-          createWindow2()
-        }
-      }, {
-        type: "separator"
-      }, {
-        label: "Fermer", role: "quit"
-      }]
-  }
-]
-const menu = Menu.buildFromTemplate(templateMenu)
+          createWindow2();
+        },
+      },
+      {
+        type: "separator",
+      },
+      {
+        label: "Fermer",
+        role: "quit",
+      },
+    ],
+  },
+];
+const menu = Menu.buildFromTemplate(templateMenu);
 
 //Zone des chargement de fenettres
 function createWindow() {
@@ -79,7 +99,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../../index.html"));
-  mainWindow.setMenu(menu)
+  mainWindow.setMenu(menu);
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 }
@@ -96,10 +116,30 @@ function createWindow2() {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../../newPage.html"));
-  mainWindow.setMenu(menu)
+  mainWindow.setMenu(menu);
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+}
 
+function createWindowUpdate(info: object) {
+  console.log(info)
+  // Create the browser window.
+  const mainWindow = new BrowserWindow({
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, "./preload.js"),
+    },
+    width: 800,
+  });
+
+  // and load the index.html of the app.
+  mainWindow.loadFile(path.join(__dirname, "../../updateEvent.html"));
+  mainWindow.setMenu(menu);
+  mainWindow.webContents.on('dom-ready', () => {
+    mainWindow.webContents.send('event', info)
+  })
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -108,7 +148,6 @@ function createWindow2() {
 app.whenReady().then(() => {
   createWindow();
 
- 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

@@ -1,5 +1,6 @@
 
 import { an } from "@fullcalendar/core/internal-common";
+import { IpcRendererEvent } from "electron";
 
 export { }
 declare global {
@@ -13,6 +14,8 @@ declare global {
             deleteEvent: (id: number) => Promise<any>;
             contextMenu: () => Promise<any>;
             openDetail: (id: number) => Promise<any>;
+            openUpdate: (info: Object) => Promise<any>;
+            onEvent: (cb: (e: IpcRendererEvent, info : object) => void) => void;
         }
     }
     function getAllEvents(): Promise<any>;

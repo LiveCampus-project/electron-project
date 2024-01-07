@@ -23,12 +23,13 @@ export function getEventByDate(month:number, year:number) {
     return new Promise((res, reject) => {
         conn.query('SELECT * from event WHERE MONTH(date_deb)=? AND YEAR(date_deb)=?', [month, year], (err: any, result: any) => {
             if (err) reject(err)
-            else res(result[0])
+            else res(result)
         })
     })
 }
 
 export function createEvent(params:IEvent) {
+    console.log(params)
     return new Promise((res, reject) => {
         conn.query('INSERT INTO event (date_deb, date_fin, titre, categorie, statut, description, transparence) VALUES (?,?,?,?,?,?,?)',
             [params.date_debut, params.date_fin, params.titre, params.categorie, params.status, params.description, params.transparence], (err: any, result: any) => {
